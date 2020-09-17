@@ -1,0 +1,20 @@
+Установка бибилиотек
+pip install Flask
+
+pip install wheel
+pip install numpy
+sudo apt-get install llvm-10
+sudo pip3 install librosa
+pip install ipython
+
+
+
+flask run - запуск
+
+export FLASK_APP=hello.py
+
+
+export FLASK_ENV=development - Включить DEBUG режим.
+export FLASK_ENV=production - Выключить
+
+export FLASK_RUN_PORT=8000 - Изменить порт

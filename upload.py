@@ -1,8 +1,16 @@
 import os
+from mp3 import graph_builder
 from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = '/home/primalex/Загрузки/temp/'
+
+import librosa
+
+import matplotlib.pyplot as plt
+import librosa.display
+
+
+UPLOAD_FOLDER = '/home/primalex/Документы/Автотестирование/Python/CFT_test_audio_web/temp/'
 ALLOWED_EXTENSIONS = {'mp3'}
 
 app = Flask(__name__)
@@ -28,15 +36,24 @@ def uploaded_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = file.filename # Уязвимость
+            print("asfasfsaf %s",UPLOAD_FOLDER + filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
+            audio_data = UPLOAD_FOLDER + filename
+            x , sr = librosa.load(audio_data)
+            
+            plt.figure(figsize=(14, 5))
+            librosa.display.waveplot(x, sr=sr)
+            plt.savefig('books_read.png')
+
+            return redirect(url_for('uploaded_file', filename=filename))
+
     return '''
     <!doctype html>
     <title>CFT</title>
     <h1>Загрузите свой файл формата mp3</h1>
     <form method=post enctype=multipart/form-data>
       <input type=file name=file>
-      <input type=submit value=Upload>
+      <input type=submit value=Upload MP3>
     </form>
+    <img src="/home/primalex/Документы/Автотестирование/Python/CFT_test_audio_web/books_read.png">
     '''

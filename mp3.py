@@ -6,7 +6,6 @@ import librosa.display
 
 def graph_builder(audio_data):
     
-
     x , sr = librosa.load(audio_data)
     # print(type(x), type(sr))
     # #<class 'numpy.ndarray'> <class 'int'> 
@@ -16,8 +15,7 @@ def graph_builder(audio_data):
     #plt.figure(figsize=(14, 5))
     librosa.display.waveplot(x, sr=sr)
     plt.savefig('books_read.png')
-
-
+    return 0
 
 
 

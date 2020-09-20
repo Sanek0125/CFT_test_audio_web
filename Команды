@@ -1,15 +1,19 @@
 Установка бибилиотек
 pip install Flask
-
+sudo apt-get install python3-pip
+sudo apt-get install python-audioread
+sudo apt-get install libsndfile1
 pip install wheel
 pip install numpy
 # sudo apt-get install llvm-10
-pip install librosa
+pip3 install librosa
+
+LLVM_CONFIG=/usr/lib/llvm-10/bin/llvm-config pip3 install librosa
 pip install ipython
 pip install matplotlib
 pip  install  mpld3
 
-
+sudo pip install cffi==1.5.2
 
 flask run - запуск
 
